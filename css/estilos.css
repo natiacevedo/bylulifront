@@ -8,6 +8,37 @@ body{
     background-color: var(--primary-light);
 }
 
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1; 
+}
+
+a, h1, h2, h3, p{
+    font-weight: bold;
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* HEADER */
 header{
     background-color: var(--primary);
 }
@@ -21,7 +52,7 @@ header img{
 }
 
 #navHeader{
-    .links, img{
+    .links{
         border-bottom: rgba(210, 105, 30, 0) 3px solid;
         transition: all ease-in-out 0.3s;
         
@@ -79,24 +110,258 @@ header img{
     visibility: visible;
 }
 
-.flex-column{
+/* HOME */
+
+#hero{
+    background-image: url("../img/rolls.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 380px;
+    text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h1{
+        color: var(--primary);
+    }
+
+    h3, h2{
+        color: var(--primary-light);
+    }
 }
 
-.flex-row{
+.btn{
+    background-color: var(--primary);
+    color: var(--primary-light);
+    border: none;
+    padding: 5px 20px;
+    border-radius: 20px;
+    transition: all ease-in-out 0.3s;
+    font-weight: 700;
+}
+
+.btn-icon {
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+.btn:hover{
+    background-color: var(--secondary);
+    color: var(--primary-light);
+}
+
+#boxes{
+    text-align: center;
+    background-color: white;
+
+    h2{
+        color: var(--secondary);
+    }
+
+    .img-size{
+        width: 300px;
+        height: 300px;
+        overflow: hidden;
+        transition: all ease-in-out 0.3s;
+    }
+
+    .img-size img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .img-size:hover{
+        transform: scale(1.1);
+    }
+    
+}
+
+.carousel-item{
+    height: 500px;
+    
+    .carousel-caption{
+        color: var(--primary-light);
+    }
+
+    img{
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+#suscripcion{
+    background-image: url("../img/fondo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 380px;
+    text-align: center;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2{
+        color: var(--primary-light);
+    }
+
+    p{
+        color: #fff;
+    }
+
+    form{
+        width: 50%;
+        margin: auto;
+    }
+
+    .submit{
+        background-color: var(--secondary);
+    }
+
+    .submit:hover{
+        background-color: var(--primary-light);
+        color: var(--primary);
+    }
 }
 
-.item-lista-producto{
+/* TIENDA */
+
+.item-lista-producto {
     background-color: var(--secondary);
     width: 28%;
     margin: 20px;
+    border-radius: 20px;
 }
 
-.img-producto{
+.img-producto {
     width: 100%;
     height: 300px;
     object-fit: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    cursor: pointer;
+}
+
+.texto-producto {
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 10px;
+    color: white;
+}
+
+.botones-producto {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+}
+
+.guardar-btn, .eliminar-btn {
+    width: 40px;
+    height: 40px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.guardar-btn:hover, .eliminar-btn:hover {
+    transform: scale(1.1);
+}
+
+.eliminar-btn {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .item-lista-producto {
+        width: 80%;
+        margin: 20px auto;
+    }
+
+    .img-producto {
+        height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .item-lista-producto {
+        width: 100%;
+        margin: 10px auto;
+    }
+
+    .img-producto {
+        height: auto;
+    }
+}
+
+#boton-filtro {
+    height: auto;
+    align-self: center;
+    margin-left: 10px;
+}
+
+.form{
+    color: var(--primary);
+}
+
+/* SOBRE BYLULI */
+
+#sobrenosotras{
+    color: var(--primary);
+    width: 60%;
+
+    h1, h2{
+        color: var(--secondary);
+    }
+}
+
+.img-cuadrada {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+  }
+
+/* CARRITO */
+#carrito{
+    color: var(--primary);
+
+    h1, h2{
+        color: var(--secondary);
+    }
+
+    .pagar{
+        width: 100%;
+    }
+}
+
+.volver{
+    color: var(--primary);
+    transition: all ease-in-out 0.3s;
+    margin: 20px;
+}
+
+.volver:hover{
+    color: var(--secondary);
+}
+
+/* FOOTER */
+footer{
+    background-color: var(--primary);
+    color: var(--primary-light);
+    border-top: var(--secondary) 3px solid;
+    font-size: smaller;
 }

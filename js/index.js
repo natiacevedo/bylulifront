@@ -7,9 +7,14 @@ import {
   eventoClickCerrarSesion,
 } from "../utils/helpers.js";
 
-validarSesion();
-eventoClickCerrarSesion();
+validarSesion();/* 
+eventoClickCerrarSesion(); */
 const mostrarListaProductos = (data) => {
+  if (!data || data.length === 0) {
+    imprimir("listado", "<p>No se encontraron productos.</p>");
+    return;
+  }
+
   imprimir("lista-error", "");
   const listadoProductos = data
     .map((producto) =>
@@ -24,15 +29,6 @@ const mostrarListaProductos = (data) => {
     .join("");
 
   imprimir("listado", `<table>${listadoProductos}</table>`);
-  document.querySelectorAll(".img-producto").forEach((itemListado) => {
-    itemListado.addEventListener("click", () => {
-      document.location.replace(`detalle-producto.html?id=${itemListado.id}`);
-    });
-  });
-};
-
-const mostrarError = (error) => {
-  imprimir("lista-error", error);
 };
 
 document.querySelector("#boton-filtro").addEventListener("click", () => {
@@ -40,7 +36,11 @@ document.querySelector("#boton-filtro").addEventListener("click", () => {
   const filtroCategoria = obtenerValorInput("input-filtro-categoria");
 
   RequestsAPI.getAllProducts({ filtroNombre, filtroCategoria })
-    .then(mostrarListaProductos)
+    .then((data) => {
+      mostrarListaProductos(data);
+
+      document.querySelector("#input-filtro-nombre").value = "";
+    })
     .catch(mostrarError);
 });
 

@@ -1,20 +1,50 @@
-import { getLocalStorage, imprimir } from "./utils/functions.js";
+const productosCarrito = document.getElementById("productos-carrito");
 
-export const imprimirAñadidos = () => {
-    let añadidos = getLocalStorage("productosAñadidos") || [];
-    let contenidoGuardado = [];
+const productosGuardados = JSON.parse(localStorage.getItem("productos")) || [];
 
-     añadidos.forEach((productoData) => {
-        let produ = new pelicula(productoData.id, productoData.nombre, productoData.precio, productoData.descripcion, productoData.imagen);
-        console.log(produ);
-        return (
-            contenidoGuardado.push(produ.mostrarEnLista(producto,false))
-        )
-    } )
-    console.log(añadidos, contenidoGuardado);
-    imprimir("añadidos", `<h2>Tus productos elegidos</h2>`+ contenidoGuardado);
-    document.querySelectorAll(".eliminar-btn").forEach((button)=> button.addEventListener("click", ()=> 
-        eliminarFavoritas(button.getAttribute("data-id"))))
+function mostrarProductosCarrito() {
+    if (productosGuardados.length === 0) {
+        productosCarrito.innerHTML = "<p>El carrito está vacío.</p>";
+        document.getElementById("amount").innerText = "0.00";
+        return;
+    }
+
+    productosCarrito.innerHTML = "";
+
+    let total = 0;
+
+    productosGuardados.forEach((producto, index) => {
+        const productoDiv = document.createElement("div");
+        productoDiv.classList.add("producto-carrito");
+
+        productoDiv.innerHTML = `
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <img src="${producto.imagen}" alt="${producto.nombre}" class="me-4" width="100px">
+                <p class="me-4">${producto.nombre}</p>
+                <p class="me-4">Precio: $${producto.precio}</p>
+                <button class="btn-eliminar btn" data-index="${index}">Eliminar</button>
+            </div>
+        `;
+
+        total += parseFloat(producto.precio);
+
+        productosCarrito.appendChild(productoDiv);
+    });
+
+    document.getElementById("amount").innerText = total.toFixed(2);
+
+    document.querySelectorAll(".btn-eliminar").forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+            const index = event.target.getAttribute("data-index");
+            eliminarProductoDelCarrito(index);
+        });
+    });
 }
 
-imprimirAñadidos();
+function eliminarProductoDelCarrito(index) {
+    productosGuardados.splice(index, 1);
+    localStorage.setItem("productos", JSON.stringify(productosGuardados));
+    mostrarProductosCarrito();
+}
+
+mostrarProductosCarrito();

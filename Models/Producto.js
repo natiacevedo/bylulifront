@@ -16,17 +16,19 @@ class Producto {
 
   mostrarEnLista(producto, guardado) {
     return `
-            <div class="item-lista-producto" >
-                <img src="${this.imagen}" class="img-producto" id="${this.id}"></img>
-                <div class="flex-row justify-content-between p-2">
-                    <div>
-                    <p>${this.nombre}</p>
-                    <p>$${this.precio}</p>
-                    </div>
-                    <button type="button" id="guardar" class="guardar-btn btn btn-outline-light" data-id="${this.id}" data-nombre="${this.nombre}" data-precio="${this.precio}">+</button>
-                    <button type="button" class="eliminar-btn btn btn-danger" data-id="${this.id}">-</button>
-                    </div>
-                </div>
+            <div class="item-lista-producto">
+    <img src="${this.imagen}" class="img-producto" id="${this.id}" />
+    <div class="flex-row">
+        <div class="texto-producto">
+            <p>${this.nombre}</p>
+            <p>$${this.precio}</p>
+        </div>
+        <div class="botones-producto">
+            <button type="button" id="guardar" class="guardar-btn" data-id="${this.id}" data-nombre="${this.nombre}" data-precio="${this.precio}" data-imagen="${this.imagen}">+</button>
+            <button type="button" class="eliminar-btn" data-id="${this.id}">-</button>
+        </div>
+    </div>
+</div>
                 `;
   }
 
@@ -64,6 +66,7 @@ function agregarProductoAlLocalStorage(productId) {
     id: productId,
     nombre: event.target.getAttribute("data-nombre"),
     precio: event.target.getAttribute("data-precio"),
+    imagen: event.target.getAttribute("data-imagen")
   };
 
   let productosGuardados = JSON.parse(localStorage.getItem("productos")) || [];
@@ -80,11 +83,9 @@ function agregarProductoAlLocalStorage(productId) {
 function eliminarProductoDeLocalStorage(productId) {
     let productosGuardados = JSON.parse(localStorage.getItem("productos")) || [];
   
-    // Encontrar el índice del primer producto que coincide con el id
     const index = productosGuardados.findIndex((producto) => producto.id === productId);
   
     if (index !== -1) {
-      // Eliminar el producto encontrado
       productosGuardados.splice(index, 1);
       localStorage.setItem("productos", JSON.stringify(productosGuardados));
       console.log(`Producto con id ${productId} eliminado.`);
@@ -92,7 +93,6 @@ function eliminarProductoDeLocalStorage(productId) {
       console.log(`No se encontró el producto con id ${productId}.`);
     }
   
-    // Actualizar la cantidad de productos en el carrito
     mostrarProductosEnCarrito();
   }
 
