@@ -28,41 +28,48 @@ const manejarErrores = (error = new Error("Error desconocido")) => {
 export class RequestsAPI {
     static urlBase = "http://localhost:3000";
 
-    static login (email, password) {
-        const body = JSON.stringify({email, password});
+    static login(email, password) {
+        const body = JSON.stringify({ email, password });
         
-        return fetch(obtenerUrl("login"), {method: "POST", body, headers})
-        .then(procesarRespuesta)
-        .catch(manejarErrores);
+        return fetch(obtenerUrl("login"), { method: "POST", body, headers })
+            .then(procesarRespuesta)
+            .catch(manejarErrores);
     }
 
     static logout() {
-        return fetch(obtenerUrl("logout"), {method: "POST", headers})
+        return fetch(obtenerUrl("logout"), { method: "POST", headers })
             .then(procesarRespuesta)
             .catch(manejarErrores);
+    }
+
+    static getAllProducts(opciones = {}) {
+        const queryParams = new URLSearchParams({});
+    
+        if (opciones.filtroNombre) {
+            queryParams.set("nombre", opciones.filtroNombre);
         }
     
-        static getAllProducts(opciones = {}) {
-        
-            const queryParams = new URLSearchParams({});
-    
-            if(opciones.filtroNombre){
-                queryParams.set("nombre", opciones.filtroNombre);
-            }
-    
-            if(opciones.filtroCategoria) {
-                queryParams.set("categoria", opciones.filtroCategoria);
-            }
+        if (opciones.filtroCategoria) {
+            queryParams.set("categoria", opciones.filtroCategoria);
+        }
 
-            
-            return fetch(obtenerUrl("productos?" + queryParams), {method: "GET", headers})
+        return fetch(obtenerUrl("productos?" + queryParams), { method: "GET", headers })
             .then(procesarRespuesta)
             .catch(manejarErrores);
-        }
+    }
 
-        static getProducto(idProducto) {
-        return fetch(obtenerUrl(`producto/${idProducto}`), {headers})
-        .then(procesarRespuesta)
-        .catch(manejarErrores);
+    static getProducto(idProducto) {
+        return fetch(obtenerUrl(`producto/${idProducto}`), { headers })
+            .then(procesarRespuesta)
+            .catch(manejarErrores);
+    }
+
+    // Método para registrar un nuevo usuario
+    static registrar(nombre, apellido, email, password) {
+        const body = JSON.stringify({ nombre, apellido, email, password });
+
+        return fetch(obtenerUrl("registrar"), { method: "POST", body, headers })
+            .then(procesarRespuesta)
+            .catch(manejarErrores);
     }
 }

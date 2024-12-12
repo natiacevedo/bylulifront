@@ -4,11 +4,9 @@ import {
   imprimir,
   obtenerValorInput,
   validarSesion,
-  eventoClickCerrarSesion,
 } from "../utils/helpers.js";
 
-validarSesion();/* 
-eventoClickCerrarSesion(); */
+validarSesion();
 const mostrarListaProductos = (data) => {
   if (!data || data.length === 0) {
     imprimir("listado", "<p>No se encontraron productos.</p>");
@@ -44,4 +42,4 @@ document.querySelector("#boton-filtro").addEventListener("click", () => {
     .catch(mostrarError);
 });
 
-RequestsAPI.getAllProducts().then(mostrarListaProductos).catch(mostrarError);
+RequestsAPI.getAllProducts().then(mostrarListaProductos);

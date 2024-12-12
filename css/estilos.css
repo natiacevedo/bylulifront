@@ -1,6 +1,6 @@
 :root{
     --primary: #77AAC9;
-    --primary-light: #F1E2C6;
+    --primary-light: #f3e7d2;
     --secondary: #F1A7A8;
 }
 
@@ -260,7 +260,7 @@ header img{
     padding: 20px;
 }
 
-.guardar-btn, .eliminar-btn {
+#tienda .guardar-btn, #tienda .eliminar-btn {
     width: 40px;
     height: 40px;
     font-weight: bold;
@@ -356,6 +356,89 @@ header img{
 
 .volver:hover{
     color: var(--secondary);
+}
+
+/* LOGIN */
+
+#login{
+    color: var(--primary);
+}
+
+#login form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+#form-login-submit, #form-register-submit{
+    margin-top: 1rem;
+    width: 100%;
+}
+
+#form-logout-submit:hover{
+    background-color: var(--primary);
+}
+
+/* CONTACTO */
+
+  #contacto{
+    color: var(--primary);
+
+    a{
+        color: var(--secondary);
+    }
+  }
+
+/* DETALLE */
+
+#detalle{
+    color: var(--primary);
+
+    .item-producto{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+    }
+
+    .img-producto{
+        width: 20%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
+    .guardar-btn, .eliminar-btn{
+        width: 200px;
+        margin: 10px auto;
+        padding: 5px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 0.2s ease;
+    }
+
+    .guardar-btn{
+        background-color: var(--primary);
+        color: var(--primary-light);
+    }
+
+    .eliminar-btn{
+        background-color: var(--secondary);
+        color: var(--primary-light);
+    }
+}
+
+/* LOGIN */
+
+#boton-logout{
+    display: none;    
 }
 
 /* FOOTER */
