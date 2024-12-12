@@ -64,7 +64,6 @@ export class RequestsAPI {
             .catch(manejarErrores);
     }
 
-    // Método para registrar un nuevo usuario
     static registrar(nombre, apellido, email, password) {
         const body = JSON.stringify({ nombre, apellido, email, password });
 
