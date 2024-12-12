@@ -1,3 +1,12 @@
+import { Producto } from "../Models/Producto.js";
+
+import { RequestsAPI } from "../RequestsAPI.js";
+
+import { imprimir } from "../utils/helpers.js";
+
+const params = new URLSearchParams(window.location.search);
+const idProducto = params.get("id");
+
 const productosCarrito = document.getElementById("productos-carrito");
 
 const productosGuardados = JSON.parse(localStorage.getItem("productos")) || [];
