@@ -26,7 +26,7 @@ const manejarErrores = (error = new Error("Error desconocido")) => {
 }
  
 export class RequestsAPI {
-    static urlBase = "https://bylulifront.onrender.com";
+    static urlBase = "http://localhost:3000/api";
 
     static login(email, password) {
         const body = JSON.stringify({ email, password });

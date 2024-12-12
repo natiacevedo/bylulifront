@@ -47,4 +47,39 @@ function eliminarProductoDelCarrito(index) {
     mostrarProductosCarrito();
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    const paymentForm = document.getElementById("payment-form");
+
+    paymentForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const fullName = document.getElementById("full-name").value.trim();
+        const address = document.getElementById("address").value.trim();
+        const cardNumber = document.getElementById("card-number").value.trim();
+        const expirationDate = document.getElementById("expiration-date").value.trim();
+        const cvv = document.getElementById("cvv").value.trim();
+
+        if (!fullName || !address || !cardNumber || !expirationDate || !cvv) {
+            displayMessage("Por favor, completa todos los campos antes de enviar.", "error");
+            return;
+        }
+        displayMessage("¡Pago realizado con éxito! Gracias por tu compra.", "success");
+        paymentForm.reset();
+    });
+
+    function displayMessage(message, type) {
+        const existingMessage = document.querySelector(".form-message");
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+
+        const messageDiv = document.createElement("div");
+        messageDiv.className = `form-message ${type}`;
+        messageDiv.textContent = message;
+
+        paymentForm.appendChild(messageDiv);
+    }
+});
+
 mostrarProductosCarrito();
+
