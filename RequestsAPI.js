@@ -26,7 +26,7 @@ const manejarErrores = (error = new Error("Error desconocido")) => {
 }
  
 export class RequestsAPI {
-    static urlBase = "http://localhost:3000/api";
+    static urlBase = "https://byluliback.onrender.com";
 
     static login(email, password) {
         const body = JSON.stringify({ email, password });
@@ -72,3 +72,5 @@ export class RequestsAPI {
             .catch(manejarErrores);
     }
 }
+
+export default RequestsAPI
