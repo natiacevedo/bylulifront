@@ -21,10 +21,10 @@ body {
 main {
     flex: 1; 
 }
-
+/* 
 a, h1, h2, h3, p{
     font-weight: bold;
-}
+} */
 
 .flex-column{
     display: flex;
@@ -51,6 +51,12 @@ header img{
     width: 22%;
 }
 
+@media (max-width: 768px) {
+    header img{
+    margin-top: 20px;
+}
+}
+
 #navHeader{
     .links{
         border-bottom: rgba(210, 105, 30, 0) 3px solid;
@@ -64,7 +70,6 @@ header img{
 
     p{
         color: var(--secondary);
-        font-weight: bold;
     }
 
     .active{
@@ -140,7 +145,6 @@ header img{
     padding: 5px 20px;
     border-radius: 20px;
     transition: all ease-in-out 0.3s;
-    font-weight: 700;
 }
 
 .btn-icon {
@@ -195,11 +199,9 @@ header img{
 }
 
 #suscripcion{
-    background-image: url("../img/fondo.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     height: 380px;
+    background-color: var(--primary);
+    padding: 10% 0;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -226,6 +228,15 @@ header img{
     .submit:hover{
         background-color: var(--primary-light);
         color: var(--primary);
+    }
+}
+
+@media (min-width: 768px) {
+    #suscripcion{
+    background-image: url("../img/fondo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     }
 }
 
@@ -321,7 +332,7 @@ header img{
 
 #sobrenosotras{
     color: var(--primary);
-    width: 60%;
+    width: 80%;
 
     h1, h2{
         color: var(--secondary);

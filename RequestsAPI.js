@@ -20,6 +20,12 @@ const procesarRespuesta = (res) => {
     })
 }
 
+/**
+ * Maneja un error lanzado por una promise, mostrando el mensaje
+ * por consola y relanzando el error.
+ * @param {Error} [error] - El error a manejar.
+ * @throws {string} - El mensaje del error.
+ */
 const manejarErrores = (error = new Error("Error desconocido")) => {
     console.error("Ha ocurrido un error:", error.message);
     throw error.message;
